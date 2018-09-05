@@ -2,7 +2,7 @@ import {NotificationManager} from 'react-notifications'
 
 const errorWrapper = {
     wrap: error => {
-        console.log(error.response)
+        console.log(error)
         if (error && error.response && error.response.data) {
             const errData = error.response.data
             if (errData === 'No username or password') {

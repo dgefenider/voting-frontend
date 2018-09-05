@@ -22,27 +22,33 @@ const Header = observer(
             stateStore.deleteToken()
         }
         render() {
-            const {username} = stateStore
+            const {username, isAdmin} = stateStore
             return (
                 <HeaderRow>
                     <Col md={4}>
                         <LogoImg src={logo} />
                     </Col>
                     <HeaderItemsCol md={2}>{username}</HeaderItemsCol>
-                    <HeaderItemsCol md={2}>
-                        <Link to="/">
-                            <Button block color="primary">
-                                На главную
-                            </Button>
-                        </Link>
-                    </HeaderItemsCol>
-                    <HeaderItemsCol md={2}>
-                        <Link to="/admin">
-                            <Button block color="danger">
-                                Админка
-                            </Button>
-                        </Link>
-                    </HeaderItemsCol>
+                    {isAdmin && (
+                        <HeaderItemsCol md={2}>
+                            <Link to="/">
+                                <Button block color="primary">
+                                    На главную
+                                </Button>
+                            </Link>
+                        </HeaderItemsCol>
+                    )}
+                    {isAdmin && (
+                        <HeaderItemsCol md={2}>
+                            <Link to="/admin">
+                                <Button block color="danger">
+                                    Админка
+                                </Button>
+                            </Link>
+                        </HeaderItemsCol>
+                    )}
+                    {!isAdmin && <Col md={2} />}
+                    {!isAdmin && <Col md={2} />}
                     <HeaderItemsCol md={2}>
                         <Button block color="danger" onClick={this.exit}>
                             Выйти

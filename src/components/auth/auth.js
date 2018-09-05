@@ -6,6 +6,7 @@ import axios from 'axios'
 import {constants} from '../../config'
 import {errorWrapper} from '../../services'
 import {stateStore} from '../../store'
+import unicorn from '../../styles/img/unicorn.png'
 
 const StyledForm = styled(Form)`
     width: 100%;
@@ -23,6 +24,8 @@ const StyledInput = styled(Input)`
     padding: 10px;
     font-size: 16px;
 `
+
+const MarginImg = styled.img`margin-top: 10px;`
 
 class Auth extends Component {
     state = {
@@ -76,6 +79,7 @@ class Auth extends Component {
                     <Button block color="primary" size="lg" type="submit" onClick={this.logIn}>
                         Sign in
                     </Button>
+                    <MarginImg src={unicorn} style={{width: '50%'}} />
                     <p className="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
                 </StyledForm>
             </StyledDiv>

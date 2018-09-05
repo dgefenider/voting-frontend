@@ -50,7 +50,21 @@ class Project extends Component {
         }
     }
     render() {
-        const {name, description, id, participant1, participant2, participant3} = this.state.project
+        const {name, description, id, participant1, participant2, participant3, votings} = this.state.project
+        let idea = {total: 0, average: 0}
+        let art = {total: 0, average: 0}
+        let mechanics = {total: 0, average: 0}
+        let realization = {total: 0, average: 0}
+        votings.forEach(vote => {
+            idea.total += vote.idea
+            art.total += vote.art
+            mechanics.total += vote.mechanics
+            realization.total += vote.realization
+        })
+        idea.average = idea.total / votings.length || 0
+        art.average = art.total / votings.length || 0
+        mechanics.average = mechanics.total / votings.length || 0
+        realization.average = realization.total / votings.length || 0
         const {showUpdate} = this.state
         const {onDelete} = this.props
         return (
@@ -97,6 +111,33 @@ class Project extends Component {
                     <Row>
                         <Col md={2}>Участник 3</Col>
                         <BreakLineCol md={10}>{participant3}</BreakLineCol>
+                    </Row>
+                    <Row>
+                        <Col md={4}>Оценки (всего оценок {votings.length})</Col>
+                    </Row>
+                    <Row>
+                        <Col md={4}>Идея (сумма/средний балл)</Col>
+                        <Col md={8}>
+                            {idea.total}/{idea.average}
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col md={4}>Техническая реализация (сумма/средний балл)</Col>
+                        <Col md={8}>
+                            {realization.total}/{realization.average}
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col md={4}>Художественное исполнение (сумма/средний балл)</Col>
+                        <Col md={8}>
+                            {art.total}/{art.average}
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col md={4}>Механика и взаимодействие (сумма/средний балл)</Col>
+                        <Col md={8}>
+                            {mechanics.total}/{mechanics.average}
+                        </Col>
                     </Row>
                 </Container>
 
