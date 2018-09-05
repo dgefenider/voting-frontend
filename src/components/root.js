@@ -8,9 +8,6 @@ import {NotificationContainer} from 'react-notifications'
 
 const Root = observer(
     class Root extends Component {
-        componentDidMount() {
-            stateStore.loadToken()
-        }
         render() {
             const {token} = stateStore
             console.log(token)
@@ -28,7 +25,7 @@ const Root = observer(
                             <Route
                                 path="/"
                                 render={props => {
-                                    return token ? <Main /> : <Redirect to="/auth" />
+                                    return token ? <Main {...props} /> : <Redirect to="/auth" />
                                 }}
                             />
                         </Switch>

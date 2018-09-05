@@ -34,9 +34,8 @@ class Auth extends Component {
         const {username, password} = this.state
         try {
             const response = await axios.post(constants.serverUrl + 'auth', {username, password})
-            const {token} = response.data
-            console.log(token, response)
-            stateStore.setToken(token)
+            const payload = response.data
+            stateStore.logIn(payload)
         } catch (e) {
             errorWrapper.wrap(e)
         }
