@@ -8,4 +8,4 @@ import 'react-notifications/lib/notifications.css'
 import {stateStore} from './store'
 stateStore.loadData()
 ReactDOM.render(<Root />, document.getElementById('root'))
-registerServiceWorker()
+// registerServiceWorker()
